@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "代理切换器",
+  "version": "0.1.0",
+  "description": "通过设置IP和端口快速切换浏览器代理状态。",
+  "permissions": [
+    "proxy",
+    "storage",
+    "privacy"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "Starry.ico",
+    "32": "Starry.ico",
+    "48": "Starry.ico",
+    "128": "Starry.ico"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "代理切换",
+    "default_icon": {
+      "16": "Starry.ico",
+      "24": "Starry.ico",
+      "32": "Starry.ico"
+    }
+  },
+  "web_accessible_resources": [{
+    "matches": ["*://*/*"],
+    "resources": [
+      "data/media_devices.js",
+      "data/support_detection.js",
+      "data/additional_objects.js"
+    ]
+  }],
+  "content_scripts": [{
+    "all_frames": true,
+    "matches": ["*://*/*"],
+    "run_at": "document_start",
+    "js": ["data/inject.js"]
+  }]
+}
